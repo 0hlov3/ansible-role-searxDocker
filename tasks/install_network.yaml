@@ -7,3 +7,4 @@
     labels:
       network: "{{ searx_network_name }}"
       project: "{{ searx_container_name }}"
+...

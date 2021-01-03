@@ -6,3 +6,4 @@
 - include_tasks: install_searx.yaml
 - include_tasks: install_morty.yaml
 - include_tasks: install_searxchecker.yaml
+...
