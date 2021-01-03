@@ -1,0 +1,8 @@
+---
+- include_tasks: install_network.yaml
+- include_tasks: create_folder_files.yaml
+- include_tasks: create_searx_caddyfile.yaml
+- include_tasks: install_filtron.yaml
+- include_tasks: install_searx.yaml
+- include_tasks: install_morty.yaml
+- include_tasks: install_searxchecker.yaml

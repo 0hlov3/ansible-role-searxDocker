@@ -1,0 +1,27 @@
+---
+- name: Create directory for Filtron
+  file:
+    path: "{{ filtron_container_folder }}"
+    state: directory
+    mode: '0755'
+  
+- name: Create directory for SEARX
+  file:
+    path: "{{ searx_container_folder }}"
+    state: directory
+    mode: '0755'
+
+- name: Create directory for searx-checker
+  file:
+    path: "{{ searxchecker_container_folder }}"
+    state: directory
+    mode: '0755'
+
+- name: Copy filtron rules.json
+  copy:
+    src: rules.json
+    dest: "{{ filtron_container_folder }}/rules.json"
+    owner: root
+    group: root
+    mode: '0644'
+...

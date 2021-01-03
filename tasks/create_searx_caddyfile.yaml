@@ -1,0 +1,5 @@
+- name: Copy searx caddyfile
+  template:
+      dest: "{{ searx_caddyfile_path }}/nextclouad.caddy"
+      src: searx.caddy.j2
+  when: (searx_caddyfile_path is defined) and (searx_caddyfile_path|length > 0)

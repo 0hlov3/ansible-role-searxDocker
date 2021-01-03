@@ -1,0 +1,9 @@
+---
+- name: Create searx docker network
+  docker_network:
+    name: "{{ searx_network_name }}"
+    ipam_driver: default
+    attachable: yes
+    labels:
+      network: "{{ searx_network_name }}"
+      project: "{{ searx_container_name }}"

@@ -1,0 +1,46 @@
+---
+#filtron
+filtron_container_name: "filtron"
+filtron_container_image: "dalf/filtron"
+filtron_container_tag: "latest"
+filtron_container_command: "-listen 0.0.0.0:4040 -api 0.0.0.0:4041 -target searx:8080"
+filtron_container_listen_ip: "127.0.0.1"
+filtron_container_api_port: "4041"
+filtron_container_listen_port: "4040"
+filtron_container_folder: "/docker/filtron"
+
+#morty
+morty_container_name: "morty"
+morty_container_image: "dalf/morty"
+morty_container_tag: "latest"
+morty_key: "ReplaceWithARealKey!"
+morty_address: "0.0.0.0:3000"
+morty_container_command: "-timeout 6 -ipv6"
+morty_container_listen_ip: "127.0.0.1"
+morty_container_listen_port: "3000"
+
+#searx
+searx_container_name: searx
+searx_container_image: "searx/searx"
+searx_container_tag: "latest"
+searx_container_command: "-f"
+searx_container_folder: "/docker/searx"
+searx_hostname: "your.domain.tld"
+
+
+#searxchecker
+searxchecker_container_name: "searx-checker"
+searxchecker_container_image: "searx/searx-checker"
+searxchecker_container_tag: "latest"
+searxchecker_container_command: "-cron -o html/data/status.json http://searx:8080"
+searxchecker_container_folder: "/docker/searx-checker"
+
+#searxnetwork
+searx_network_name: "searx"
+
+#Caddy
+searx_caddyfile_path: "/docker/caddy/caddyfiles/"
+searx_caddy:
+  searx_caddy_fqdn: ""
+  searx_caddy_tls: ""
+...

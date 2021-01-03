@@ -1,0 +1,33 @@
+---
+- name: Pull Filtron image
+  docker_image:
+    name: "{{ filtron_container_image }}:{{ filtron_container_tag }}"
+    source: pull
+
+- name: Start filtron Docker Container
+  docker_container:
+    name: "{{ filtron_container_name }}"
+    image: "{{ filtron_container_image }}:{{ filtron_container_tag }}"
+    command: "{{ filtron_container_command }}"
+    ports:
+      - "{{ filtron_container_listen_ip }}:{{ filtron_container_listen_port }}:4040"
+      - "{{ filtron_container_listen_ip }}:{{ filtron_container_api_port }}:4041"
+    volumes:
+      - "{{ filtron_container_folder }}/rules.json:/etc/filtron/rules.json:rw"
+    read_only: true
+    cap_drop:
+      - ALL
+    network_mode: "{{ searx_network_name }}"
+    networks:
+      - name: "{{ searx_network_name }}"
+        aliases:
+          - "{{ filtron_container_name }}"
+    networks_cli_compatible: yes
+    purge_networks: yes
+    restart_policy: "unless-stopped"
+    state: started
+    restart: yes
+    labels:
+      network: "{{ searx_network_name }}"
+      project: "{{ searx_container_name }}"
+...
