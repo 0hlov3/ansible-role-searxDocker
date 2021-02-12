@@ -10,12 +10,12 @@
     image: "{{ searx_container_image }}:{{ searx_container_tag }}"
     command: "{{ searx_command }}"
     volumes:
-      - /docker/searx:/etc/searx:rw
+      - "{{ searx_volume }}:/etc/searx:rw"
     env:
       BIND_ADDRESS: "0.0.0.0:8080"
       BASE_URL: "https://{{ searx_hostname }}/"
       MORTY_URL: "https://{{ searx_hostname }}/morty/"
-      MORTY_KEY: "{{ morty_key }}"
+      MORTY_KEY: "{{ searx_morty_key }}"
     cap_drop:
       - ALL
     capabilities:

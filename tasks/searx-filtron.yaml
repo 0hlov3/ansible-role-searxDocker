@@ -10,8 +10,8 @@
     image: "{{ searx_filtron_container_image }}:{{ searx_filtron_container_tag }}"
     command: "{{ searx_filtron_command }}"
     ports:
-      - "127.0.0.1:4040:4040"
-      - "127.0.0.1:4041:4041"
+      - "{{ searx_filtron_listen_ip }}:{{ searx_filtron_listen_port }}:4040"
+      - "{{ searx_filtron_listen_ip }}:{{ searx_filtron_listen_port_1 }}:4041"
     volumes:
       - "{{ searx_filtorn_volume }}/rules.json:/etc/filtron/rules.json:rw"
     read_only: true

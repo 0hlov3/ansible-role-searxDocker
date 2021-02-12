@@ -8,6 +8,7 @@ searx_container_image: "searx/searx"
 searx_container_tag: "latest"
 searx_hostname: "your.domain.tld"
 searx_command: "-f"
+searx_volume: "/docker/searx"
 
 # Searx Checker
 searx_checker_container_name: "searx-checker"
@@ -17,17 +18,21 @@ searx_checker_command: "-cron -o html/data/status.json http://searx:8080"
 searx_checker_volume: "/docker/searx-checker"
 
 # Searx Morty
-searx_morty_container_name: "morty"
+searx_morty_container_name: "searx-morty"
 searx_morty_container_image: "dalf/morty"
 searx_morty_container_tag: "latest"
 searx_morty_key: "ReplaceWithARealKey!"
+searx_morty_listen_ip:  "127.0.0.1"
 searx_morty_port: "3000"
 searx_morty_command: "-timeout 6 -ipv6"
 
 # Searx Filtron
-searx_filtron_container_name: "filtron"
+searx_filtron_container_name: "searx-filtron"
 searx_filtron_container_image: "dalf/filtron"
 searx_filtron_container_tag: "latest"
+searx_filtron_listen_ip:  "127.0.0.1"
+searx_filtron_listen_port: "4040"
+searx_filtron_listen_port_1: "4041"
 searx_filtron_command: "-listen 0.0.0.0:4040 -api 0.0.0.0:4041 -target searx:8080"
 searx_filtorn_volume: "/docker/filtron"
 

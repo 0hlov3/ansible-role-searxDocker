@@ -9,11 +9,11 @@
     name: "{{ searx_morty_container_name }}"
     image: "{{ searx_morty_container_image }}:{{ searx_morty_container_tag }}"
     ports:
-      - "127.0.0.1:{{ searx_morty_port }}:{{ searx_morty_port }}"
+      - "127.0.0.1:{{ searx_morty_port }}:3000"
     command: "{{ searx_morty_command }}"
     env:
       MORTY_KEY: "{{ searx_morty_key }}"
-      MORTY_ADDRESS: "0.0.0.0:{{ searx_morty_port }}"
+      MORTY_ADDRESS: "0.0.0.0:3000"
     read_only: true
     cap_drop:
       - ALL
