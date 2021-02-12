@@ -30,4 +30,10 @@ searx_filtron_container_image: "dalf/filtron"
 searx_filtron_container_tag: "latest"
 searx_filtron_command: "-listen 0.0.0.0:4040 -api 0.0.0.0:4041 -target searx:8080"
 searx_filtorn_volume: "/docker/filtron"
+
+#Caddy
+searx_caddyfile_path: "/docker/caddy/caddyfiles/"
+searx_caddy:
+  searx_caddy_fqdn: ""
+  searx_caddy_tls: ""
 ...
