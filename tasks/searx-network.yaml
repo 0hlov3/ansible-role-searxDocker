@@ -1,0 +1,10 @@
+---
+- name: Create searx docker network
+  docker_network:
+    name: searx
+    ipam_driver: default
+    attachable: yes
+    labels:
+      network: "searx"
+      project: "searx"
+...

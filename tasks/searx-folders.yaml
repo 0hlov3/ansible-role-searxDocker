@@ -1,0 +1,7 @@
+---
+- name: Create directory for SEARX
+  file:
+    path: /docker/searx
+    state: directory
+    mode: '0755'
+...

@@ -1,0 +1,39 @@
+---
+- name: Pull searx image
+  docker_image:
+    name: "{{ searx_container_image }}:{{ searx_container_tag }}"
+    source: pull
+
+- name: Start searx Docker Container
+  docker_container:
+    name: "{{ searx_container_name }}"
+    image: "{{ searx_container_image }}:{{ searx_container_tag }}"
+    command: "{{ searx_command }}"
+    volumes:
+      - /docker/searx:/etc/searx:rw
+    env:
+      BIND_ADDRESS: "0.0.0.0:8080"
+      BASE_URL: "https://{{ searx_hostname }}/"
+      MORTY_URL: "https://{{ searx_hostname }}/morty/"
+      MORTY_KEY: "{{ morty_key }}"
+    cap_drop:
+      - ALL
+    capabilities:
+      - CHOWN
+      - SETGID
+      - SETUID
+      - DAC_OVERRIDE
+    network_mode: "{{ searx_network_name }}"
+    networks:
+      - name: "{{ searx_network_name }}"
+        aliases:
+        - "{{ searx_container_name }}"
+    networks_cli_compatible: yes
+    purge_networks: yes
+    restart_policy: "unless-stopped"
+    state: started
+    restart: yes
+    labels:
+      network: "searx"
+      project: "searx"
+...

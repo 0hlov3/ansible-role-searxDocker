@@ -1,0 +1,15 @@
+---
+# Searx Network
+- include_tasks: searx-network.yaml
+# Searx Filtron
+- include_tasks: searx-filtron-folders.yaml
+- include_tasks: searx-filtron.yaml
+# Searx
+- include_tasks: searx-folders.yaml
+- include_tasks: searx.yaml
+# Morty
+- include_tasks: searx-morty.yaml
+# Searx-Checker
+- include_tasks: searx-checker-folders.yaml
+- include_tasks: searx-checker.yaml
+...

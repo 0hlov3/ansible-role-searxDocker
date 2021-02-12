@@ -1,0 +1,27 @@
+---
+- name: Pull searx_checker image
+  docker_image:
+    name: "{{ searx_checker_container_image }}:{{ searx_checker_container_tag }}"
+    source: pull
+
+- name: Start searx_checker Docker Container
+  docker_container:
+    name: "{{ searx_checker_container_name }}"
+    image: "{{ searx_checker_container_image }}:{{ searx_checker_container_tag }}"
+    command: "{{ searx_checker_command }}"
+    volumes:
+      - "{{ searx_checker_volume }}:/usr/local/searx-checker/html/data:rw"
+    network_mode: "{{ searx_network_name }}"
+    networks:
+      - name: "{{ searx_network_name }}"
+        aliases:
+        - "{{ searx_checker_container_name }}"
+    networks_cli_compatible: yes
+    purge_networks: yes
+    restart_policy: "unless-stopped"
+    state: started
+    restart: yes
+    labels:
+      network: "searx"
+      project: "searx"
+...

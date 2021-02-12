@@ -1,0 +1,33 @@
+---
+- name: Pull morty image
+  docker_image:
+    name: "{{ searx_morty_container_image }}:{{ searx_morty_container_tag }}"
+    source: pull
+
+- name: Start morty Docker Container
+  docker_container:
+    name: "{{ searx_morty_container_name }}"
+    image: "{{ searx_morty_container_image }}:{{ searx_morty_container_tag }}"
+    ports:
+      - "127.0.0.1:{{ searx_morty_port }}:{{ searx_morty_port }}"
+    command: "{{ searx_morty_command }}"
+    env:
+      MORTY_KEY: "{{ searx_morty_key }}"
+      MORTY_ADDRESS: "0.0.0.0:{{ searx_morty_port }}"
+    read_only: true
+    cap_drop:
+      - ALL
+    network_mode: "{{ searx_network_name }}"
+    networks:
+      - name: "{{ searx_network_name }}"
+        aliases:
+          - "{{ searx_morty_container_name }}"
+    networks_cli_compatible: yes
+    purge_networks: yes
+    restart_policy: "unless-stopped"
+    state: started
+    restart: yes
+    labels:
+      network: "searx"
+      project: "searx"
+...
